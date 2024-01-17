@@ -18,13 +18,17 @@ const userSchema=new mongoose.Schema({
         }
         },
     Contact:{ type:Number, min: 8},
-    DOB:{ type:Date},
     Gender:{type:String,
     enum:"Male"||"Female"||"Other" 
            },
     age:{type: Number},
-    //   hobbies:{type: Array
-    //[reading, playing ]},    
+    JobsCreated:{
+        type:Array
+    },
+    JobsApplied:{
+        type:Array
+    }
+      
 
     authentication:{
         password:{type:String,required:true, select:false},
@@ -43,5 +47,7 @@ export const createUser=(values:Record<string, any>)=> new UserModel(values)
 .save().then((user:any)=>user.toObject());
 export const deleteUserById=(id:string)=>UserModel.findByIdAndDelete({_id:id});
 export const updateUserById=(id:string, values:Record<string, any>) => UserModel.findByIdAndUpdate(id,values);
+export const getUserByJobApplied=(id:string)=> UserModel.findOne({['JobsApplied']});
+export const getUserByJobCreated=(id:string)=> UserModel.findOne({['JobsCreated']});
 
  
