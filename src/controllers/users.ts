@@ -1,6 +1,8 @@
 import express from 'express';
 
 import { deleteUserById, getUsers, getUserById } from '../database/users';
+import { createJob, ApplyJob, } from '../database/jobs';
+
 
 export const getAllUsers = async (req: any, res: any) => {
   try {
