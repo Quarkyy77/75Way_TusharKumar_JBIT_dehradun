@@ -63,3 +63,6 @@ const Jobschema = new mongoose.Schema(
     }
 })
 export const JobSchema = mongoose.model("jobs", Jobschema)
+
+export const createJob=(values:Record<string, any>)=> new JobSchema(values)
+.save().then((user:any)=>user.toObject());
